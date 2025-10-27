@@ -1,0 +1,117 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/** Introduction to Variables **/
+:root {
+  /* TYPOGRAPHY */
+  --fontFamily: "Inter", sans-serif;
+  --fontFamily-heading: "Poppins";
+  --fontSize-small: 0.875rem;
+  --fontSize-medium: 1rem;
+  --fontSize-large: 1.25rem;
+  --fontSize-xl: 1.5rem;
+  --lineHeight-medium: 24px;
+  --lineHeight-big: 32px;
+  --letterSpacing-normal: -0.85px;
+  --letterSpacing-small: -1px;
+  --letterSpacing-medium: -0.5px;
+  --fontWeight-medium: 500;
+  --fontWeight-semiBold: 600;
+
+  /*COLOR*/
+  --bgColor: #f8f8f8;
+  --bodyTextColor: #444444;
+  --headingTextColor: #1a1a1a;
+  --primaryButtonColor: #45ed21;
+  --onPrimaryButtonColor: #0d110c;
+  --borderColor: #e8e8e8;
+  --dowColor: rgba(0, 0, 0, 0.1);
+
+  /* SPACING */
+  --space1: 0.25rem;
+  --space2: 0.5rem;
+  --space3: 1rem;
+  --space4: 1.2rem;
+  --space5: 1.5rem;
+
+  /** CLAMP VARIABLE  **/
+  --minimumSize: 1rem;
+  --maximumSize: 2rem;
+  --clampVariable: clamp(var(--minimumSize), 1rem + 1vw, var(--maximumSize));
+
+  /**SHADOW VARIABLES **/
+  --offsetX: 0px;
+  --offsetY: 4px;
+  --blurRadius: 6px;
+  --boxShadow: var(--offsetX) var(--offsetY) var(--blurRadius) var(--dowColor);
+}
+
+/*Setting up dark mode variables**/
+[data-theme="dark"] {
+  --bgColor: #d6d6d6;
+  --bodyTextColor: #444444;
+  --headingTextColor: #1a1a1a;
+  --primaryButtonColor: #000000;
+  --onPrimaryButtonColor: #28c900;
+  --borderColor: #e8e8e8;
+  --dowColor: rgba(9, 238, 17, 0.1);
+}
+
+.heading {
+  font-size: var(--clampVariable);
+  letter-spacing: var(--letterSpacing-small);
+  font-family: var(--fontFamily);
+  line-height: var(--lineHeight-big);
+  color: var(--headingTextColor);
+}
+
+.paragraph {
+  font-family: var(--fontFamily);
+  font-size: var(--fontSize-medium);
+  line-height: var(--lineHeight-medium);
+  font-weight: var(--fontWeight-medium);
+  letter-spacing: var(--letterSpacing-normal);
+
+  /** this is a local variable use **/
+  --bodyTextColor: black;
+  color: var(--bodyTextColor);
+}
+
+button {
+  /** the blue here is a fallback color **/
+  background-color: var(--primaryButtonColor, blue);
+  color: var(--onPrimaryButtonColor);
+  padding: var(--space3) var(--space4);
+  border-radius: 8px;
+}
+
+/** Using the calculation function **/
+
+.container {
+  width: calc(100% - 5rem);
+  height: auto;
+  background-color: var(--bgColor);
+  padding: calc(
+    2rem * 2
+  ); /** don't over complicate the calculation function see example. we could have just use 4rem instead. **/
+
+  box-shadow: var(--offsetX) var(--offsetY) var(--blurRadius) var(--dowColor);
+
+  padding: calc(var (--space5 * 3));
+}
+
+/** Media Query Example Using Variables **/
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bgColor: #d6d6d6;
+    --bodyTextColor: #444444;
+    --headingTextColor: #1a1a1a;
+    --primaryButtonColor: #000000;
+    --onPrimaryButtonColor: #28c900;
+    --borderColor: #e8e8e8;
+    --dowColor: rgba(9, 238, 17, 0.1);
+  }
+}
